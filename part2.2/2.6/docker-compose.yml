@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile-frontend
+    ports:
+      - 5000:5000
+    container_name: frontend-container
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile-backend
+    ports:
+      - 8080:8080
+    environment:
+      - REDIS_HOST=redis
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DATABASE=postgres
+    container_name: backend-container
+  redis:
+    image: redis
+    container_name: redis-container
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DATABASE=postgres
+    container_name: postgres-container

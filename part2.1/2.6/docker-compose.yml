@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:13.2-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: example
+    container_name: db_redmine
+    volumes:
+      - database:/var/lib/postgresql/data
+
+volumes:
+  database:
