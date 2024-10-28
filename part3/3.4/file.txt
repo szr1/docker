@@ -1,0 +1,1 @@
+docker run -e DOCKER_USER=$DOCKER_USER -e DOCKER_PWD=$DOCKER_PWD -v /var/run/docker.sock:/var/run/docker.sock builder-image szr1/express-app szogir/express-app-bash
